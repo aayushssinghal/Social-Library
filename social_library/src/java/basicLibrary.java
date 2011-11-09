@@ -28,6 +28,18 @@ public class basicLibrary {
     protected static ResultSet rset = null;
     protected static PreparedStatement stmt;
 
+    public static ResultSet getAllBooks() {
+        try {
+            createConnection();
+            stmt = conn.prepareStatement("select * from book");
+            rset = stmt.executeQuery();
+            return rset;
+        } catch (SQLException ex) {
+            System.out.println("exception in getAlllBooks() : " + ex);
+        }
+        return rset;
+    }
+
     public static void closeConnection() {
         try {
             stmt.close();
@@ -69,7 +81,7 @@ public class basicLibrary {
             stmt.setString(9, subject);
             stmt.setString(10, ddc);
             stmt.setString(11, sears);//completed the query
-            stmt.execute();//exucuting the query
+            stmt.executeUpdate();//exucuting the query
             
             closeConnection();
         } catch (Exception sqle) {
@@ -87,7 +99,7 @@ public class basicLibrary {
             createConnection();
             stmt = conn.prepareStatement("delete from book where ID=?");
             stmt.setInt(1, accno);//completed the query
-            stmt.execute();
+            stmt.executeUpdate();
             closeConnection();
         }
         catch (Exception sqle) {
@@ -111,13 +123,29 @@ public class basicLibrary {
                 
             }
             else{
+            	stmt = conn.prepareStatement("select to_char(sysdate, 'DD-Mon-YY') from dual");
+            	rset = stmt.executeQuery();//exucuting the query
+            	String curTime="",deadline="";
+            	if (rset.next()){
+                	curTime=rset.getString(1);
+                	//out.println(curTime);
+                }
+                stmt = conn.prepareStatement("select to_char(sysdate+30, 'DD-Mon-YY') from dual");
+                if (rset.next()){
+                	deadline=rset.getString(1);
+                	//out.println(deadline);
+                }
                 stmt = conn.prepareStatement("insert into issued_books values(?,?,?,?,?)");
                 stmt.setString(1, personID);
                 stmt.setString(2, bookID);
+                stmt.setString(3, curTime);
+                stmt.setString(4, deadline);
+                int fine = 0;
+                stmt.setInt(5, fine);
                 //should insert taken on, deadline and fine
                 //ResultSet set=stmt.executeQuery("select curdate()");
                 //pStmt.setString(3, );
-                stmt.execute();//exucuting the query
+                stmt.executeUpdate();//exucuting the query
                 
             }
             closeConnection();
@@ -143,7 +171,7 @@ public class basicLibrary {
             else{
                 stmt = conn.prepareStatement("delete from issued_books where bookID=?");
                 stmt.setString(1, bookID);//completed the query
-                stmt.execute();//exucuting the query
+                stmt.executeUpdate();//exucuting the query
             }
             closeConnection();
         }
@@ -175,7 +203,7 @@ public class basicLibrary {
             stmt.setString(10, ddc);
             stmt.setString(11, acc);
             stmt.setString(12, oldID);//completed the query
-            stmt.execute();//exucuting the query
+            stmt.executeUpdate();//exucuting the query
             closeConnection();        
         } catch (Exception sqle) {
             System.out.println("SQLException : " + sqle);

@@ -19,7 +19,14 @@ import java.lang.Math;
 public class StringMatch {
     private String searchString;
     private String hostString;
-
+/*
+    public Interface List<Book> searchResults() {
+        List<Book> l = new ArrayList<Book>();
+        ResultSet rset = basicLibrary::getAllBooks();
+        while (rset.next()) {
+            if (exactMatch(searchString, rset.getString(2))) {
+                list.add( // TODO
+*/
     public boolean exactMatch(String a, String b) {
         if (a == null ? b == null : a.equals(b))
             return true;
