@@ -11,3 +11,8 @@ create table book (
     ddc     varchar(30),
     sears   varchar(30)
 );
+
+
+insert into book values(1, 'Concepts of Physics', 'H. C. Verma', 'bharti bhawan', 1, 1, 1992, 280, 'Physics', '', '');
+
+select * from book;
