@@ -1,3 +1,5 @@
+package DBPackage;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -9,7 +11,8 @@ import java.sql.*;
  *
  * @author dhiraj - edited by Aayush
  */
-public class basicLibrary {
+public class basicLibrary extends DBPackage.DBConnection {
+
     int acc;
     String title;
     String author;
@@ -24,10 +27,6 @@ public class basicLibrary {
     String sears;
 
             
-    protected static Connection conn;
-    protected static ResultSet rset = null;
-    protected static PreparedStatement stmt;
-
     public static ResultSet getAllBooks() {
         try {
             createConnection();
@@ -38,28 +37,6 @@ public class basicLibrary {
             System.out.println("exception in getAlllBooks() : " + ex);
         }
         return rset;
-    }
-
-    public static void closeConnection() {
-        try {
-            stmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println("Unable to close connections with database :" + ex);
-        }
-    }
-    
-    public static void createConnection() {
-        String databaseName = "social_library";
-        String connectionURL = "jdbc:derby://localhost:1527/" + databaseName + ";";
-        try {
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            conn = DriverManager.getConnection(connectionURL);
-        } catch(SQLException sqle) {
-            System.err.println("problem in connecting to database :" + sqle);
-        } catch(java.lang.ClassNotFoundException exp) {
-            System.err.println("Database Driver class not found : " + exp);
-        }
     }
 
     
@@ -204,7 +181,7 @@ public class basicLibrary {
             stmt.setString(11, acc);
             stmt.setString(12, oldID);//completed the query
             stmt.executeUpdate();//exucuting the query
-            closeConnection();        
+            closeConnection();
         } catch (Exception sqle) {
             System.out.println("SQLException : " + sqle);
             return 0;
