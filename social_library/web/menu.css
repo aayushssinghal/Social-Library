@@ -1,0 +1,185 @@
+/* 
+    Document   : menu
+    Created on : Nov 13, 2011, 4:22:58 PM
+    Author     : MOULIVAIO
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+/**
+* NEWBOLD ACADEMICS MENU CSS
+* Developed by Matthew Aimonetti
+*/
+
+/*############# BACKGROUND PICTURE #############*/
+.academic {
+width            : 130px;
+background-image:url(images/academic/academics.jpg);
+background-color: #ffffff;
+background-position:right;
+background-repeat:no-repeat;
+font-size: 11px;
+font-weight: bold;
+color: #3e7595;
+font-family: Arial, Hevlvetica, sans-serif;
+}
+
+/*############## ALL MENU ITEMS ###############*/
+.academic a{
+	font-family			: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size			: 11px;
+    font-weight			: bold;
+    text-decoration		: none;
+    display				: block;
+    white-space			: normal;
+    position			: relative;	
+	margin				: 0px 0px -1px 0px;
+	padding				: 5px 5px 5px 15px;
+}
+
+/*############# First content color background settings #############*/
+.academic .menuCont_1{
+/*Container for menu item (opacity is set here)*/
+background-color	: #4B8AAD;
+Filter: Alpha(Opacity=85);
+-moz-opacity:.85;
+opacity:.85;
+width: 100%;
+}
+
+/*############# Second content color background settings #############*/
+.academic .menuCont_2{
+/*Container for menu item (opacity is set here)*/
+background-color: #B7E4FD;
+Filter: Alpha(Opacity=95);
+-moz-opacity:.95;
+opacity: .95;
+width: 100%;
+}
+
+.academic .parentItem img,
+.academic .parentItem-active img{
+    position: absolute;
+    top: 0px;
+	border: 0;
+}
+
+.academic .rgtImg {
+/*Arrow image for menu items with child items*/
+	position: relative;
+    margin-top: 5px;
+    right: 2px;
+    border: 0;
+}
+.academic .lftImg {
+/*Custom image to left of menu item*/
+	position: relative;
+	margin-top: 2px;
+    border: 0;
+}
+
+
+.academic .menuCont {
+	height:auto;
+}
+
+
+.academic .parentItem, 
+.academic .parentItem:hover, 
+.academic .parentItem-active,
+.academic .parentItem-active:hover {
+	background-image	: url(images/javabean/menu_orange_bgr.png);
+	background-repeat	: no-repeat;	
+	background-position : left;
+	border				: 1px solid #ffffff;
+	width: 100%;
+}
+
+.academic .parentItem:link,
+.academic .parentItem:visited {
+	/*background-color	: #ff9b37;*//*this overrides the menu container on hover (ie can't cope with hover on anything but an anchor) */
+	color				: #ffffff; /*font color on hover is set here - IT IS NOT AFFECTED BY MENU CONT OPACITY*/
+	font-weight: bold;
+}
+
+.academic .parentItem:hover,
+.academic .parentItem-active {
+	/*background-color	: #ff9b37; -- if you set a background color here it will override what you have set in the menu container*/
+	background-color	: #E9E9E9;
+	color				: #000000 !important; /*font color is set here - IT IS NOT AFFECTED BY MENU CONT OPACITY*/
+}
+.academic .parentItem:active {
+	/*background-color	: #ee5500;*/ /*this overrides the menu container on hover (ie can't cope with hover on anything but an anchor) */
+	color				: #000000 !important;/*font color on hover is set here - IT IS NOT AFFECTED BY MENU CONT OPACITY*/
+}
+.academic .subItem_1 img, .academic .subItem_2 img,
+.academic .subItem_1-active img, .academic .subItem_2-active img{
+    position: absolute;
+    top: 0px;
+    border: 0;
+}
+
+.academic .subItem_1{
+background-image	: url(images/javabean/menu_dark_blue_bgr.png);
+width: 130px;
+}
+
+.academic .subItem_2{
+background-image	: url(images/javabean/menu_dark_blue_bgr.png);
+width: 130px;
+}
+
+.academic .subItem_1, .academic .subItem_2,
+.academic .subItem_1:hover, .academic .subItem_2:hover,
+.academic .subItem_1-active, .academic .subItem_2-active,
+.academic .subItem_1-active:hover, .academic .subItem_2-active:hover {	
+	background-repeat	: repeat-y;
+    text-decoration		: none;
+	margin				: 0px 0px -1px 0px;	
+	color: #000000 !important;
+	width: 130px; /*This had to be added to stop menu from shrinking on hover - GT 22/08/2005*/
+}
+
+.academic .subItem_1, .academic .subItem_1:hover, .academic .subItem_1-active, .academic .subItem_1-active:hover {
+	border				: 1px solid #bbbbbb;
+}
+
+.academic .subItem_2, .academic .subItem_2:hover, .academic .subItem_2-active, .academic .subItem_2-active:hover {
+	border				: 1px solid #ffffff;
+}
+
+.academic .subItem_1, .academic .subItem_2{
+    color				: #000000;
+}
+.academic .subItem_1:hover, .academic .subItem_2:hover{
+	color				: #000000 !important;
+}
+
+
+.academic .subItem_1:hover, .academic .subItem_1-active:hover, .academic .subItem_1-active{
+    background-color	: #E9E9E9;	/*this overrides the menu container on hover (ie can't cope with hover on anything but an anchor) */
+}
+
+
+.academic .subItem_2:hover, .academic .subItem_2-active:hover, .academic .subItem_2-active{
+    background-color	: #E9E9E9;	
+}
+
+
+.academic .section {
+    border-style: none;
+    position: absolute;
+    visibility: hidden;
+    z-index: -1;
+}
+
+* html .academic td { position: relative; } /* ie 5.0 fix */
+
+root { 
+    display: block;
+}
+

@@ -1,0 +1,576 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><script src="Help.GitHub%20-%20Git%20cheat%20sheets_files/tips.json"></script><script src="Help.GitHub%20-%20Git%20cheat%20sheets_files/current-status.html"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Help.GitHub - Git cheat sheets</title>
+    <link href="Help.GitHub%20-%20Git%20cheat%20sheets_files/documentation.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="Help.GitHub%20-%20Git%20cheat%20sheets_files/pygments.css" media="screen" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="Help.GitHub%20-%20Git%20cheat%20sheets_files/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="Help.GitHub%20-%20Git%20cheat%20sheets_files/print.css" type="text/css" media="print">
+    <script src="Help.GitHub%20-%20Git%20cheat%20sheets_files/jquery.js" type="text/javascript"></script>
+    <script src="Help.GitHub%20-%20Git%20cheat%20sheets_files/documentation.js" type="text/javascript"></script>
+    <script src="Help.GitHub%20-%20Git%20cheat%20sheets_files/help.js" type="text/javascript"></script>
+  </head>
+
+  <body class="documentation">
+    <div id="header-wrapper">
+      <div id="header">
+        <div>
+          <a class="logo" href="http://help.github.com/"><img src="Help.GitHub%20-%20Git%20cheat%20sheets_files/logo.png" height="45" width="179"></a>
+          <ul class="nav">
+            <li><a href="http://gitref.org/">Git Reference</a></li>
+            <li><a href="https://github.com/contact">Support</a></li>
+            <li><a href="https://github.com/">Back to GitHub</a></li>
+          </ul>
+        </div>
+      </div><!-- #header -->
+    </div><!-- #header-wrapper -->
+
+    <div id="wrapper">
+
+      <div class="content">
+        <h1>Git cheat sheets</h1>
+        <h3>Cheat sheets</h3>
+<ul>
+	<li>Alexander Zeitler’s <a href="http://github.com/AlexZeitler/gitcheatsheet">Git Cheat Sheet</a></li>
+	<li>Zach Rusin’s <a href="http://zrusin.blogspot.com/2007/09/git-cheat-sheet.html">Git Cheat Sheet</a></li>
+	<li><a href="http://cheat.errtheblog.com/s/git/">http://cheat.errtheblog.com/s/git/</a></li>
+	<li>Nate Murray’s <a href="http://www.xcombinator.com/2010/09/01/git-cheat-sheet-and-class-notes/">Git Cheat Sheet</a></li>
+	<li><a href="https://github.com/esc/git-cheatsheet-de/">Git – Der Spickzettel</a> (in German)</li>
+	<li><a href="http://refcardz.dzone.com/refcardz/getting-started-git">DZone Git RefCard Cheat Sheet</a></li>
+</ul>
+<h3>A practical git guide</h3>
+<p><em>Notes extracted from git screencast at http://www.peepcode.com.</em></p>
+<h4>Configuration</h4>
+<p>identify yourself to git: email and your name</p>
+<p><code>git config --global user.name "David Beckwith"</code></p>
+<p><code>git config --global user.email "dbitsolutions@gmail.com"</code></p>
+<p>To view all options:</p>
+<p><code>git config --list</code></p>
+<p>OR</p>
+<p><code>cat .git/config</code></p>
+<h4>Set up aliases</h4>
+<p><code>git config --global alias.co checkout</code></p>
+<h4>View your configuration</h4>
+<p><code>cat .gitconfig</code></p>
+<h4>To ignore whitespace (Ruby is whitespace insensitive)</h4>
+<p><code>git config --global apply.whitespace nowarn</code></p>
+<p>Some nice aliases:</p>
+<p>gb = git branch<br>
+gba = git branch -a<br>
+gc = git commit -v<br>
+gd = git diff | mate<br>
+gl = git pull<br>
+gp = git push<br>
+gst = git status</p>
+<h3>Start using git</h3>
+<p><code>git init</code></p>
+<h4>Ignoring files</h4>
+<p>Add a file in the root directory called <code>.gitignore</code> and add some files to it: (comments begin with hash)</p>
+*.log
+db/schema.rb
+db/schema.sql
+<p>Git automatically ignores empty directories. If you want to have a <code>log/</code> directory, but want to ignore all the files in it, add the following lines to the root <code>.gitignore</code>: (lines beginning with ‘!’ are exceptions)</p>
+<p><code>log/*</code><br>
+<code>!.gitignore</code></p>
+<p>Then add an empty <code>.gitignore</code> in the empty directory:</p>
+<p><code>touch log/.gitignore</code></p>
+<h4>Scheduling the addition of all files to the next commit</h4>
+<p><code>git add .</code></p>
+<h4>Checking the status of your repository</h4>
+<p><code>git status</code></p>
+<h4>Committing files</h4>
+<p><code>git commit -m "First import"</code></p>
+<h4>Seeing what files have been committed</h4>
+<p><code>git ls-files</code></p>
+<h4>Scheduling deletion of a file</h4>
+<p><code>git rm [file name]</code></p>
+<h4>Committing all changes in a repository</h4>
+<p><code>git commit -a</code></p>
+<h4>Scheduling the addition of an individual file to the next commit</h4>
+<p><code>git add [file name]</code></p>
+<h4>Viewing the difference as you commit</h4>
+<p><code>git commit -v</code></p>
+<h4>Commit and type the message on the command line</h4>
+<p><code>git commit -m "This is the message describing the commit"</code></p>
+<h4>Commit and automatically get any other changes</h4>
+<p><code>git commit -a</code></p>
+<h4>A “normal” commit command</h4>
+<p><code>git commit -a -v</code></p>
+<h4>Viewing a log of your commits</h4>
+<p><code>git log</code></p>
+<h4>Viewing a log of your commits with a graph to show the changes</h4>
+<p><code>git log --stat</code></p>
+<h4>Viewing a log with pagination</h4>
+<p><code>git log -v</code></p>
+<h4>Visualizing git changes</h4>
+<p><code>gitk --all</code></p>
+<h4>Creating a new tag and pushing it to the remote branch</h4>
+<p><code>git tag "v1.3"</code><br>
+<code>git push --tags</code></p>
+<h4>Creating a new branch</h4>
+<p><code>git branch [name of your new branch]</code></p>
+<h4>Pushing the branch to a remote repository</h4>
+<p><code>git push origin [new-remote]</code></p>
+<h4>Pulling a new branch from a remote repository</h4>
+<p><code>git fetch origin [remote-branch]:[new-local-branch]</code></p>
+<h4>Viewing branches</h4>
+<p><code>git branch</code></p>
+<h4>Viewing a list of all existing branches</h4>
+<p><code>git branch -a</code></p>
+<h4>Switching to another branch</h4>
+<p>The state of your file system will change after executing this command.</p>
+<p><code>git checkout [name of the branch you want to switch to]</code></p>
+<p>OR</p>
+<p><code>git co [name of the branch you want to switch to]</code></p>
+<h4>Making sure changes on master appear in your branch</h4>
+<p><code>git rebase master</code></p>
+<h4>Merging a branch back into the master branch</h4>
+<p>First, switch back to the master branch:</p>
+<p><code>git co master</code></p>
+<p>Check to see what changes you’re about to merge together, compare the two branches:</p>
+<p><code>git diff master xyz</code></p>
+<p>If you’re in a branch that’s not the <code>xyz</code> branch and want to merge the <code>xyz</code> branch into it:</p>
+<p><code>git merge xyz</code></p>
+<h4>Reverting changes to before said merge</h4>
+<p><code>git reset --hard ORIG_HEAD</code></p>
+<h4>Resolving conflicts</h4>
+<p>Remove the markings, add the file, then commit.</p>
+<h4>Creating a branch (and switching to the new branch) in one line</h4>
+<p><code>git checkout -b [name of new branch]</code></p>
+<h4>Creating a stash (like a clipboard) of changes to allow you to switch branches without committing</h4>
+<p><code>git stash save "Put a message here to remind you of what you're saving to the clipboard"</code></p>
+<h4>Switching from the current branch to another</h4>
+<p><code>git co [branch you want to switch to]</code></p>
+<p>Do whatever<br>
+Then switch back to the stashed branch</p>
+<p><code>git co [the stashed branch]</code></p>
+<h4>Viewing a list of stashes</h4>
+<p><code>git stash list</code></p>
+<h4>Loading back the stash</h4>
+<p><code>git stash apply</code></p>
+<p>Now you can continue to work where you were previously.</p>
+<h4>Deleting a branch (that has been merged back at some point)</h4>
+<p><code>git branch -d [name of branch you want to delete]</code></p>
+<h4>Deleting an unmerged branch</h4>
+<p><code>git branch -D [name of branch you want to delete]</code></p>
+<h4>Deleting a stash</h4>
+<p><code>git stash clear</code></p>
+<h4>Setting up a repository for use on a remote server</h4>
+<p>Copy up your repository. e.g.:</p>
+<p><code>scp -r my_project deploy@yourbox.com:my_project</code></p>
+<p>Move your files on the remote server to <code>/var/git/my_project</code><br>
+For security make the owner of this project git<br>
+On the repository server:</p>
+<p><code>sudo chown -R git:git my_project</code></p>
+<p>Then (for security) restrict the “deploy” user to doing git-related things in <code>/etc/passwd</code> with a <code>git-shell</code>.</p>
+<h4>Checking out a git repository from a remote to your local storage</h4>
+ <p><code>git clone git@yourbox.com:/var/git/my_project</code></p>
+<h4>Viewing extra info about a remote repository</h4>
+<p><code>cat .git/config</code></p>
+<p>By virtue of having cloned the remote repository, your local 
+repository becomes the slave and will track and synchronize with the 
+remote master branch.</p>
+<h4>Updating a local branch from the remote server</h4>
+<p><code>git pull</code></p>
+<h4>Downloading a copy of an entire repository (e.g. <code>laptop</code>) without merging into your local branch</h4>
+<p><code>git fetch laptop</code></p>
+<h4>Merging two local branches (ie. your local xyz branch with your local master branch) <span class="caps">USE</span> <span class="caps">MERGE</span></h4>
+<p><code>git merge laptop/xyz</code></p>
+<p>This merged the (already copied laptop repository’s xyz branch) with the current branch you’re sitting in.</p>
+<h4>Viewing metadata about a remote repository</h4>
+<p><code>git remote show laptop</code></p>
+<h4>Pushing a committed local change from one local branch to another remote branch</h4>
+<p><code>git push laptop xyz</code></p>
+<h4>Creating a tracking branch  (i.e. to link a local branch to a remote branch)</h4>
+<p><code>git branch --track local_branch remote_branch</code></p>
+<p>You do not need to specify the local branch if you are already sitting in it.</p>
+<p><code>git pull</code></p>
+<p>Note: You can track(link) different local branches to different 
+remote machines.  For example, you can track your friend’s “upgrade” 
+branch with your “bobs_upgrade” branch, and simultaneously you can track
+ the origin’s “master” branch (of your main webserver) with your local 
+“master” branch.</p>
+<p>By convention, ‘origin’ is the local name given to the remote centralized server which is the way <span class="caps">SVN</span> is usually set up on a remote server.</p>
+<h4>Seeing which local branches are tracking a remote branch</h4>
+<p><code>git remote show origin</code></p>
+<h4>Working with a remote Subversion repository (but with git locally)</h4>
+<p><code>git-svn clone [http location of an svn repository]</code></p>
+<p>Now you can work with the checked out directory as though it was a git repository.  (cuz it is)</p>
+<h4>Pushing (committing) changes to a remote Subversion repository</h4>
+<p><code>git-svn dcommit</code></p>
+<h4>Updating a local git repository from a remote Subversion repository</h4>
+<p><code>git-svn rebase</code></p>
+<p><span class="caps">NOTE</span>: make sure you have your perl bindings to your local svn installation.</p>
+<h4>I screwed up, how do I reset my checkout?</h4>
+<p><code>git checkout -f</code></p>
+<h3>See also</h3>
+<ul>
+	<li><a href="http://eagain.net/articles/git-for-computer-scientists/" title="lots of pictures">Git for computer scientists.</a></li>
+	<li><a href="http://www.kernel.org/pub/software/scm/git/docs/user-manual.html">Git user’s manual</a></li>
+	<li><a href="http://www-cs-students.stanford.edu/%7Eblynn/gitmagic/">Git Magic</a></li>
+	<li><a href="http://devcheatsheet.com/tag/git/">Git Cheat Sheets Collection</a> on DevCheatSheet.com</li>
+</ul>
+      </div>
+
+      <div id="js-sidebar" class="sidebar-shell">
+        <div class="js-accordion-list sidebar-module">
+          <ul>
+            
+            <li class="js-topic">
+              
+                <h3><a href="#">Beginner</a></h3>
+              
+              <ul class="js-guides">
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/set-up-git-redirect">Set Up Git</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/create-a-repo">Create A Repo</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/fork-a-repo">Fork A Repo</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/be-social">Be Social</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/delete-a-repo">Delete a repo</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/move-a-repo">Move a repo</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/leave-a-collaborative-repo">Leave a collaborative repo</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/send-pull-requests">Send pull requests</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/set-your-user-name-email-and-github-token">Set your user name, email and GitHub token</a></li>
+                  
+                
+              </ul>
+            </li>
+            
+            <li class="js-topic">
+              
+                <h3><a href="#">Intermediate</a></h3>
+              
+              <ul class="js-guides">
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/change-author-info">Change author info</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/deploy-keys">Deploy keys</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/ignore-files">Ignore files</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/import-from-subversion">Import from Subversion</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/install-git-html-help">Install Git HTML help</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/manage-multiple-clients">Manage multiple clients</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/multiple-ssh-keys">Multiple SSH keys</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/rebase">Rebase</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/remotes">Remotes</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/ssh-key-passphrases">SSH key passphrases</a></li>
+                  
+                
+              </ul>
+            </li>
+            
+            <li class="js-topic">
+              
+                <h3><a href="#">Advanced</a></h3>
+              
+              <ul class="js-guides">
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/deploy-with-capistrano">Deploy with Capistrano</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/post-receive-hooks">Post-Receive Hooks</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/remove-sensitive-data">Remove sensitive data</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/split-a-subpath-into-a-new-repo">Split a subpath into a new repo</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/subtree-merge">Subtree Merge</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/test-webhooks">Test webhooks</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/submodules">Working with submodules</a></li>
+                  
+                
+              </ul>
+            </li>
+            
+            <li class="js-topic">
+              
+                <h3><a href="#">Troubleshooting</a></h3>
+              
+              <ul class="js-guides">
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/common-issues-and-questions">Common issues and questions</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/firewalls-and-proxies">Firewalls and proxies</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/fix-a-bad-tree">Fix a bad tree</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/fix-egit-corruption">Fix egit corruption</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/line-endings">Line endings</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/ssh-issues">SSH issues</a></li>
+                  
+                
+              </ul>
+            </li>
+            
+            <li class="js-topic">
+              
+                <h3><a href="#">Third party</a></h3>
+              
+              <ul class="js-guides">
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/textmate">Textmate</a></li>
+                  
+                
+              </ul>
+            </li>
+            
+            <li class="js-topic">
+              
+                <h3><a href="#">GitHub Resources</a></h3>
+              
+              <ul class="js-guides">
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/userscripts-and-bookmarklets">Userscripts and Bookmarklets</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/github-support">GitHub Support</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/contact-github">Contact GitHub</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/github-status">GitHub Status</a></li>
+                  
+                
+              </ul>
+            </li>
+            
+            <li class="js-topic">
+              
+                <h3><a href="#">Git resources</a></h3>
+              
+              <ul class="js-guides">
+                
+                  
+                    <li class="disable"><span>Git cheat sheets</span></li>
+                  
+                
+                  
+                    <li><a href="http://help.github.com/pro-git">Pro Git</a></li>
+                  
+                
+                  
+                    <li><a href="http://help.github.com/git-scm">Git SCM</a></li>
+                  
+                
+                  
+                    <li><a href="http://help.github.com/git-man-pages">Git Man Pages</a></li>
+                  
+                
+                  
+                    <li><a href="http://help.github.com/git-user-manual">Git User Manual</a></li>
+                  
+                
+                  
+                    <li><a href="http://help.github.com/git-ready">Git Ready</a></li>
+                  
+                
+              </ul>
+            </li>
+            
+            <li class="js-topic">
+              
+                <h3><a href="#">Site policy</a></h3>
+              
+              <ul class="js-guides">
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/privacy-policy">Privacy Policy</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/security">Security</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/terms-of-service">Terms of Service</a></li>
+                  
+                
+                  
+                    <li style="display: none;"><a href="http://help.github.com/dmca-takedown">DMCA Takedown</a></li>
+                  
+                
+              </ul>
+            </li>
+            
+          </ul>
+        </div> <!-- /sidebar-module -->
+        <div class="sidebar-module">
+          <p>This website is <a href="http://github.com/github/help.github.com#readme" target="_blank">open source</a>. Please help us by forking the project and adding to it.</p>
+        </div>
+
+        <div class="sidebar-module">
+          <div class="status-box good">
+            <h4>Site Status:</h4>
+            <a href="http://status.github.com/">All systems operational</a>
+          </div>
+        </div> <!-- /sidebar-module -->
+
+        <div class="sidebar-module">
+          <div class="tip-box">
+            <h4>GitHub Tips</h4>
+            <a href="#" class="next">Next Tip</a>
+            <div class="tip-body">
+              <span style="display: none;" class="load"><img src="Help.GitHub%20-%20Git%20cheat%20sheets_files/indicator.gif" height="16" width="16"></span>
+              <p><p><a href="http://man.github.com/git/git-merge.html"><code>git merge --no-ff</code></a> can be used to ensure that a merge commit is always created.</p></p>
+            </div>
+          </div>
+        </div> <!-- /help-sidebar-module -->
+      </div><!-- /sidebar-shell -->
+
+    </div><!-- #wrapper -->
+
+     <div id="footer">
+      <div class="upper_footer">
+        <div class="footer_inner clearfix">
+
+        <!--[if IE]><h4 id="blacktocat_ie">GitHub Links</h4><![endif]-->
+        <!--[if !IE]--><h4 id="blacktocat">GitHub Links</h4><!--[endif]-->
+
+        <ul class="footer_nav">
+          <h4>GitHub</h4>
+          <li><a href="https://github.com/about">About</a></li>
+          <li><a href="https://github.com/blog">Blog</a></li>
+          <li><a href="https://github.com/contact">Contact &amp; Support</a></li>
+          <li><a href="https://github.com/training">Training</a></li>
+          <li><a href="http://status.github.com/">Site Status</a></li>
+        </ul>
+
+        <ul class="footer_nav">
+          <h4>Tools</h4>
+          <li><a href="http://mac.github.com/">GitHub for Mac</a></li>
+          <li><a href="https://gist.github.com/">Gist</a></li>
+          <li><a href="http://fi.github.com/">Enterprise Install</a></li>
+          <li><a href="http://jobs.github.com/">Job Board</a></li>
+        </ul>
+
+        <ul class="footer_nav">
+          <h4>Extras</h4>
+          <li><a href="http://shop.github.com/">Shop</a></li>
+          <li><a href="http://octodex.github.com/">The Octodex</a></li>
+        </ul>
+
+        <ul class="footer_nav">
+          <h4>Documentation</h4>
+          <li><a href="http://help.github.com/">GitHub Help</a></li>
+          <li><a href="http://developer.github.com/">Developer API</a></li>
+          <li><a href="http://github.github.com/github-flavored-markdown/">GitHub Flavored Markdown</a></li>
+          <li><a href="http://pages.github.com/">GitHub Pages</a></li>
+        </ul>
+
+        </div><!-- /.site -->
+      </div><!-- /.upper_footer -->
+
+      <div class="lower_footer">
+        <div class="footer_inner clearfix">
+            <div id="legal"> 
+              <!--[if IE]><a class="home_ie" href="http://github.com">Home</a><![endif]-->
+              <!--[if !IE]--><a class="home" href="http://github.com/">Home</a><!--[endif]-->
+              
+              <ul id="legal_links">
+                <li><a href="http://help.github.com/terms-of-service/">Terms of Service</a></li>
+                <li><a href="http://help.github.com/privacy-policy/">Privacy</a></li>
+                <li><a href="http://help.github.com/security/">Security</a></li>
+              </ul>
+
+              <p>© <span id="year">2011</span> GitHub Inc. All rights reserved.</p>
+            </div><!-- /#legal or /#legal_ie-->
+
+            <div class="sponsor">
+              <a href="http://www.rackspace.com/" class="logo">
+                <img src="Help.GitHub%20-%20Git%20cheat%20sheets_files/rackspace_logo.png" alt="Dedicated Server" height="36" width="38">
+              </a>
+              Powered by the <a href="http://www.rackspace.com/">Dedicated
+              Servers</a> and<br> <a href="http://www.rackspacecloud.com/">Cloud
+              Computing</a> of Rackspace Hosting<span>®</span>
+          </div>
+        </div><!-- /.site -->
+      </div><!-- /.lower_footer -->
+    </div><!-- /#footer -->
+
+  
+
+</body></html>
