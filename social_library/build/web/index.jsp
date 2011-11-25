@@ -82,6 +82,14 @@
                         <div style="float:left;height:50px;padding-top:5px;">
 				<span class="pathway"><a href="newBook.jsp">Add new book</a> </span>                              
 			</div>
+                    <div style="float:left;font-size: 18px">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+                        <div style="float:left;height:50px;padding-top:5px;">
+				<span class="pathway"><a href="deleteBook.jsp">Delete book</a> </span>
+			</div>
+                    <div style="float:left;font-size: 18px">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+                        <div style="float:left;height:50px;padding-top:5px;">
+				<span class="pathway"><a href="modifyBook.jsp">Modify book</a> </span>
+			</div>
                     <div style="float:left;font-size: 18px">&nbsp;&nbsp;|&nbsp;&nbsp</div>
                     <div style="float:right;height:50px;padding-top:5px;">
 				<a href="http://www.iitb.ac.in"> <span class="pathway">IIT Bombay Home </span> </a>                              

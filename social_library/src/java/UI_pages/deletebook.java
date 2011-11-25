@@ -17,9 +17,9 @@ import DBPackage.basicLibrary;
  *
  * @author aayush
  */
-public class addnewbook extends HttpServlet {
+public class deletebook extends HttpServlet {
 
-    /** 
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -32,43 +32,33 @@ public class addnewbook extends HttpServlet {
         PrintWriter out = response.getWriter();
         basicLibrary insert=new basicLibrary();
         if(request.getParameter("accno")!="")insert.acc=Integer.parseInt(request.getParameter("accno"));
-        insert.title=request.getParameter("title");
-        insert.author=request.getParameter("author");
-        insert.publication=request.getParameter("publication");
-        if(request.getParameter("edition")!="")insert.edition=Integer.parseInt(request.getParameter("edition"));
-        if(request.getParameter("volume")!="")insert.volume=Integer.parseInt(request.getParameter("volume"));
-        if(request.getParameter("year")!="")insert.year=Integer.parseInt(request.getParameter("year"));
-        if(request.getParameter("pages")!="")insert.pages=Integer.parseInt(request.getParameter("pages"));
-        insert.subject=request.getParameter("subject");
-        insert.ddc=request.getParameter("ddc");
-        insert.sears=request.getParameter("sears");
-        
         try {
             /* TODO output your page here */
             //out.println("<html>");
             //out.println("<head>");
-            //out.println("<title>addnewbook Servlet addnewbook</title>");
+            //out.println("<title>deletebook Servlet deletebook</title>");
             //out.println("</head>");
             //out.println("<body>");
+            //out.println(insert.acc);
             try{
-                System.out.println("inserting new book");
-                int i=insert.insertNewBook();//out.println("here");
-                if (i==0){out.println("Could not insert the book");}
-                else out.println("Servlet addnewbook at " + request.getContextPath ());
+                System.out.println("deleting book");///////////////////should check for spaces or empty
+                int i=insert.deleteBook(insert.acc);//out.println("here");
+                if (i==0){out.println("Could not delete the book");}
+                else out.println("Servlet deletebook at " + request.getContextPath ());
             }
             catch(Exception sql){
-                out.println("error1 "+sql);
+                out.println("error at delete "+sql);
             }
             //out.println("</body>");
             //out.println("</html>");
              /**/
-        } finally {            
+        } finally {
             out.close();
         }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -81,7 +71,7 @@ public class addnewbook extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -94,7 +84,7 @@ public class addnewbook extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */

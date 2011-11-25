@@ -12,6 +12,14 @@
         <servlet-name>DBExtendableServlet</servlet-name>
         <servlet-class>DBPackage.DBExtendableServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deletebook</servlet-name>
+        <servlet-class>UI_pages.deletebook</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modifybook</servlet-name>
+        <servlet-class>UI_pages.modifybook</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addnewbook</servlet-name>
         <url-pattern>/addnewbook</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>DBExtendableServlet</servlet-name>
         <url-pattern>/DBExtendableServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deletebook</servlet-name>
+        <url-pattern>/deletebook</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modifybook</servlet-name>
+        <url-pattern>/modifybook</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
