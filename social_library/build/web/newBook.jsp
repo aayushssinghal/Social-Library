@@ -11,23 +11,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body><div align="center">
         <h1>Insert a New book</h1>
         <form action="newBook" id="newbook" method="POST">
-            ACC. Number <input type ="text" size="20" name="accno" /><br />
-            Title <input type ="text" size="30" name="title" /><br />
-            Author <input type="text" size="30" name="author" /><br />
-            Publication <input type="text" size="30" name="publication" /><br />
-            Edition <input type="text" size="10" name="edition" /><br />
-            Volume <input type="text" size="10" name="volume" /><br />
-            Year <input type="text" size="10" name="year" /><br />
-            Pages <input type="text" size="10" name="pages" /><br />
-            Subject <input type="text" size="30" name="subject" /><br />
-            DDC <input type="text" size="30" name="ddc" /><br />
-            SEARS <input type="text" size="30" name="sears" /><br />
+		<table>
+<tr>
+<td>ACC. Number: </td><td><input type ="text" size="30" name="accno" /><br /></td></tr>
+<tr><td>   Title: </td><td><input type ="text" size="30" name="title" /><br /></td></tr>
+    <tr><td>     Author: </td><td><input type="text" size="30" name="author" /><br /></td></tr>
+        <tr><td>  Publication: </td><td><input type="text" size="30" name="publication" /><br /></td></tr>
+      <tr><td>      Edition:</td><td> <input type="text" size="30" name="edition" /><br /></td></tr>
+      <tr><td>      Volume: </td><td><input type="text" size="30" name="volume" /><br /></td></tr>
+      <tr><td>      Year: </td><td><input type="text" size="30" name="year" /><br /></td></tr>
+      <tr><td>      Pages: </td><td><input type="text" size="30" name="pages" /><br /></td></tr>
+     <tr><td>       Subject: </td><td><input type="text" size="30" name="subject" /><br /></td></tr>
+       <tr><td>     DDC: </td><td><input type="text" size="30" name="ddc" /><br /></td></tr>
+      <tr><td>      SEARS: </td><td><input type="text" size="30" name="sears" /><br /></td></tr>
+	  </table>
             <input type="submit" value="Submit" />
         </form>
-        
+        </br>
         <a href="index.jsp">Cancel</a>
+		</div>
     </body>
 </html>
