@@ -23,7 +23,7 @@
 
 <head>
 <title>Social Library IIT Bombay - Home</title>
-<link rel="stylesheet" href="home.css" type="text/css"/>
+<link rel="stylesheet" href="lightwindow.css" type="text/css"/>
 <script language="JavaScript" type="text/javascript">
     <!--
     function MM_reloadPage(init) {  //reloads the window if Nav4 resized

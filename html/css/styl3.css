@@ -1,0 +1,108 @@
+/*Typography
+ *****Govind Chintapalli
+/*web types*/
+@import url(http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold);
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Vollkorn Regular'), local('Vollkorn-Regular'), url('../fonts/Vollkorn-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Vollkorn Bold'), local('Vollkorn-Bold'), url('../fonts/Vollkorn-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: italic;
+  font-weight: normal;
+  src: local('Vollkorn Italic'), local('Vollkorn-Italic'), url('../fonts/Vollkorn-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Lobster1.4'), local('Lobster'), url('../fonts/Lobster.ttf') format('truetype');
+}
+
+
+html { font-size:100.01%; }
+body {
+  font-size: 80%;
+  color: #222;
+  background: #fff;
+  font-family: 'Vollkorn', Arial, Helvetica, sans-serif;
+}
+
+
+/* Headings
+-------------------------------------------------------------- */
+
+h1,h2,h6 { font-weight: normal; color: #111; }
+
+h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
+h2 { font-size: 2em; margin-bottom: 0.75em; }
+h6 { font-size: 1em; font-weight: bold; }
+
+p           { margin: 0 0 1.5em; text-indent:1cm;}
+
+a:focus,
+a:hover     { color: #09f; }
+a           { color: #06c; text-decoration: underline; }
+
+blockquote  { margin: 1.5em; color: #444; font-style: italic; }
+em     { font-style: italic; }
+
+.banner {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 4px #7f7f59;
+  -moz-box-shadow: 2px 2px 4px #7f7f59;
+  box-shadow: 2px 2px 4px #7f7f59;
+  background-image: -moz-linear-gradient(top, #b2b27d 45%, #7b7b4c);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.45, #b2b27d), color-stop(1.0, #7b7b4c));
+  background-color: #b2b27d;
+  margin-left:-25px; 
+  width:1000px; 
+  padding-top:5px;
+}
+
+/* Lists-------------------------------------------------------------- */
+
+li ul,
+li ol       { margin: 0; }
+ul, ol      { margin: 0 1.5em 1.5em 0; padding-left: 1.5em; }
+
+ul          { list-style-type: disc; }
+ol          { list-style-type: decimal; }
+
+
+/* Tables-------------------------------------------------------------- */
+
+table       { margin-bottom: 1.4em; margin:0 auto; width: 90%;border-collapse:collapse; border:1px solid #7b7b4c;}
+thead th {border-right:1px solid #ffe;}
+thead th:last-child {border-right:0px;}
+tbody td {border:0px; border-right:1px solid #7b7b4c;}
+th          { font-weight: bold; }
+thead th    { background: #7f7f59; color:#fff;}
+th,td,caption { padding: 4px 10px 4px 5px; }
+tbody tr:nth-child(even) td{ 
+	background: #ffffb3; 
+}
+caption     { background: #ffffec; }
+
+/*misc*/
+.alt {
+  font-family:'Lobster',arial;
+  padding-top:.5em;
+  padding-bottom:2em;
+  font-size:2em;
+  color:#FFF;
+  text-indent:3em;
+  margin-left:-5px;
+  margin-right:-5px;
+}
+
