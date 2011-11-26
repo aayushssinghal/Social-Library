@@ -13,7 +13,7 @@
     </head>
     <body><div align="center">
         <h1>Insert a New book</h1>
-        <form action="newBook" id="newbook" method="POST">
+        <form action="addnewbook" id="newbook" method="POST">
 		<table>
 <tr>
 <td>ACC. Number: </td><td><input type ="text" size="30" name="accno" /><br /></td></tr>

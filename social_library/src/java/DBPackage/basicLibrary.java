@@ -13,20 +13,33 @@ import java.sql.*;
  */
 public class basicLibrary extends DBPackage.DBConnection {
 
-    int acc;
-    String title;
-    String author;
-    String publication;
+    public int acc;
+    public String title;
+    public String author;
+    public String publication;
 
-    int edition; 
-    int volume;
-    int year;
-    int pages;
-    String subject; 
-    String ddc;
-    String sears;
+    public int edition; 
+    public int volume;
+    public int year;
+    public int pages;
+    public String subject; 
+    public String ddc;
+    public String sears;
 
-            
+    public basicLibrary() {
+        acc = 0;
+        title = "";
+        author = "";
+        publication = "";
+        edition = 0;
+        volume = 0;
+        year = 0;
+        pages = 0;
+        subject = "";
+        ddc = "";
+        sears = "";
+    }        
+    
     public static ResultSet getAllBooks() {
         try {
             createConnection();
@@ -39,6 +52,21 @@ public class basicLibrary extends DBPackage.DBConnection {
         return rset;
     }
 
+    /**
+     * Inserts one of more books to library, by reading from an array of books
+     * 
+     * @param books array of books(class basicLibrary) 
+     */
+    public static void insertMultipleBooks(basicLibrary books[]) {
+        int ii;
+        try {
+            for (ii = 0; ii < books.length; ii++) {
+                books[ii].insertNewBook();
+            }
+        } catch (java.lang.NullPointerException ex) {
+            System.out.println("able to catch exception : " + ex);
+        }
+    }
     
     /**
      * the arguments are that of the attributes in the table "book"
@@ -46,7 +74,8 @@ public class basicLibrary extends DBPackage.DBConnection {
     public int insertNewBook(){
         try {
             createConnection();
-            stmt = conn.prepareStatement("insert into book values(?,?,?,?,?,?,?,?,?,?,?)");
+            stmt = conn.prepareStatement(
+                    "insert into book values(?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setInt(1, acc);
             stmt.setString(2, title);
             stmt.setString(3, author);

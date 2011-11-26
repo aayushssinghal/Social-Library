@@ -31,5 +31,5 @@ public class DBConnection extends DBPackage.DBExtendableServlet {
         } catch(java.lang.ClassNotFoundException exp) {
             System.err.println("Database Driver class not found : " + exp);
         }
-    }    
+    }
 }

@@ -77,6 +77,7 @@ public class DisplayAllBooks extends DBPackage.DBConnection {
         selectFromTable(table);
         
         try {
+            //out.println("total " + rset.getFetchSize() + " results found<br />");
             out.println("<table border = '1' cellpadding = '5'>");
             ResultSetMetaData rsmd = rset.getMetaData();
             int NumCol = rsmd.getColumnCount();
@@ -85,9 +86,10 @@ public class DisplayAllBooks extends DBPackage.DBConnection {
                 out.println("<th align = 'center'>" + rsmd.getColumnName(i) + "</th>");
             }
             int cnt = 0;
+            int limit = 50;
             String s;
             out.println("</tr>");
-            while (rset.next()) {
+            while (rset.next() && limit-- > 0) {
                 cnt++;
                 out.println("<tr>");
                     for (int i = 1; i <= NumCol; i++) {
