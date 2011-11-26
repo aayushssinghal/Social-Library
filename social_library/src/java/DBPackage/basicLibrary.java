@@ -92,7 +92,7 @@ public class basicLibrary extends DBPackage.DBConnection {
     public static int issueBook(String personID, String bookID){
         try {
             createConnection();
-            stmt = conn.prepareStatement("select * from issued_books where bookID=?");
+            stmt = conn.prepareStatement("select * from issued_books where accno=?");
             stmt.setString(1, bookID);//completed the query
             rset=stmt.executeQuery();//exucuting the query
             if (rset.next()){
@@ -139,14 +139,15 @@ public class basicLibrary extends DBPackage.DBConnection {
         public static int returnBook(String bookID){
         try {
             createConnection();
-            stmt = conn.prepareStatement("select * from issued_books where bookID=?");
+            stmt = conn.prepareStatement("select * from issued_books where accno=?");
             stmt.setString(1, bookID);//completed the query
             rset=stmt.executeQuery();//exucuting the query
             if (!rset.next()){
                 System.out.println("Not issued");
+                return 2;
             }
             else{
-                stmt = conn.prepareStatement("delete from issued_books where bookID=?");
+                stmt = conn.prepareStatement("delete from issued_books where accno=?");
                 stmt.setString(1, bookID);//completed the query
                 stmt.executeUpdate();//exucuting the query
             }

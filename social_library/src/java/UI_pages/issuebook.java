@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package UI_pages;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ import DBPackage.basicLibrary;
  *
  * @author dhiraj
  */
-public class modifybook extends HttpServlet {
+public class issuebook extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -27,13 +28,13 @@ public class modifybook extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/xml");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet modifybook</title>");  
+            out.println("<title>Servlet modifybook</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet modifybook at " + request.getContextPath () + "</h1>");
@@ -48,32 +49,36 @@ public class modifybook extends HttpServlet {
             //Class.forName ("oracle.jdbc.driver.OracleDriver");
         //conn = DriverManager.getConnection("jdbc:oracle:thin:@10.105.1.30:1521:oradb","z9005044" ,"z9005044" );
         String accno=request.getParameter("accno");
-        PreparedStatement stmt= conn.prepareStatement("select * from book where accno=?");
+        String id=request.getParameter("id");
+        PreparedStatement stmt= conn.prepareStatement("select * from issued_books where accno=?");
+        PreparedStatement stmt1= conn.prepareStatement("select * from book where accno=?");
+        PreparedStatement stmt2= conn.prepareStatement("select * from person where id=?");
         stmt.setString(1, accno);
+        stmt1.setString(1, accno);
+        stmt2.setString(1, id);
         ResultSet set = stmt.executeQuery();
-        out.println("<?xml version='1.0' encoding='ISO-8859-1'?>");
-        out.println("<bookdetails>");
-
-        if(!set.next()){
-            out.println("<error>nobook</error>");
-            out.println("</bookdetails>");
+        ResultSet set1 = stmt1.executeQuery();
+        ResultSet set2 = stmt2.executeQuery();
+        if(!set1.next()){out.println("no book found with the Acc. no.");}
+        else if(!set2.next()){out.println("no person found with the ID");}
+        else if(set.next())
+            {
+            out.println("Book already issued");
         }
         else {
-            out.println("<error>noerror</error>");
-            out.println("<title>"+set.getString("title")+" </title>");
-            out.println("<author>"+set.getString("author")+" </author>");
-            out.println("<publication>"+set.getString("publication")+" </publication>");
-            out.println("<edition>"+set.getString("edition")+" </edition>");
-            out.println("<volume>"+set.getString("volume")+" </volume>");
-            out.println("<year>"+set.getString("yyyy")+" </year>");
-            out.println("<pages>"+set.getString("pages")+" </pages>");
-            out.println("<subject>"+set.getString("subject")+" </subject>");
-            out.println("<ddc>"+set.getString("ddc")+" </ddc>");
-            out.println("<sears>"+set.getString("sears")+" </sears>");
+            stmt = conn.prepareStatement("insert into issued_books values(?, ?)");
+            stmt.setString(1, accno);
+            stmt.setString(2, id);//////////////TODO : should have to use the function for date and fine
+            try {
+                stmt.executeUpdate();
+                out.println("Book succesfully issued");
+            } catch (Exception e){
+                out.println(e);
+            }
 
-       }
-       out.println("</bookdetails>");
-
+            
+        }
+       
 
         stmt.close();
             conn.close();
@@ -82,7 +87,7 @@ public class modifybook extends HttpServlet {
         } catch(java.lang.ClassNotFoundException exp) {
             System.err.println("Database Driver class not found : " + exp);
         }
-            } finally { 
+            } finally {
             out.close();
         }
     }
@@ -98,19 +103,7 @@ public class modifybook extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        basicLibrary insert=new basicLibrary();
-        try{
-                
-                System.out.println("inserting new book");
-                int i=insert.modifyBook(request.getParameter("oldaccno"), request.getParameter("newaccno"), request.getParameter("title"), request.getParameter("author"), request.getParameter("publication"), request.getParameter("edition"), request.getParameter("volume"), request.getParameter("year"), request.getParameter("pages"), request.getParameter("subject"), request.getParameter("ddc"), request.getParameter("sears"));//out.println("here");
-                if (i==0){out.println("Could not modify");}
-                else out.println("Servlet modifybook at " + request.getContextPath ());
-            }
-            catch(Exception sql){
-                out.println("error1 "+sql);
-            }
+        processRequest(request, response);
     } 
 
     /** 
@@ -124,7 +117,6 @@ public class modifybook extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
-        
     }
 
     /** 
