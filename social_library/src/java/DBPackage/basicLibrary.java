@@ -18,11 +18,11 @@ public class basicLibrary extends DBPackage.DBConnection {
     public String author;
     public String publication;
 
-    public int edition; 
+    public int edition;
     public int volume;
     public int year;
     public int pages;
-    public String subject; 
+    public String subject;
     public String ddc;
     public String sears;
 
@@ -103,7 +103,7 @@ public class basicLibrary extends DBPackage.DBConnection {
     public static int deleteBook(int accno){
         try {
             createConnection();
-            stmt = conn.prepareStatement("delete from book where ID=?");
+            stmt = conn.prepareStatement("delete from book where accno=?");
             stmt.setInt(1, accno);//completed the query
             stmt.executeUpdate();
             closeConnection();
@@ -121,7 +121,7 @@ public class basicLibrary extends DBPackage.DBConnection {
     public static int issueBook(String personID, String bookID){
         try {
             createConnection();
-            stmt = conn.prepareStatement("select * from issued_books where bookID=?");
+            stmt = conn.prepareStatement("select * from issued_books where accno=?");
             stmt.setString(1, bookID);//completed the query
             rset=stmt.executeQuery();//exucuting the query
             if (rset.next()){
@@ -168,14 +168,15 @@ public class basicLibrary extends DBPackage.DBConnection {
         public static int returnBook(String bookID){
         try {
             createConnection();
-            stmt = conn.prepareStatement("select * from issued_books where bookID=?");
+            stmt = conn.prepareStatement("select * from issued_books where accno=?");
             stmt.setString(1, bookID);//completed the query
             rset=stmt.executeQuery();//exucuting the query
             if (!rset.next()){
                 System.out.println("Not issued");
+                return 2;
             }
             else{
-                stmt = conn.prepareStatement("delete from issued_books where bookID=?");
+                stmt = conn.prepareStatement("delete from issued_books where accno=?");
                 stmt.setString(1, bookID);//completed the query
                 stmt.executeUpdate();//exucuting the query
             }
@@ -190,14 +191,29 @@ public class basicLibrary extends DBPackage.DBConnection {
     /*
      * the arguments are the ID of the book to be modified and the new values of the book
      */
-    public int modifyBook(String oldID,
-            String newID, String title, String author, String publication,
-            String edition, String volume, String year, String pages, String subject, String ddc, String acc){
+    public int getmaxAcc(){
+        createConnection();
+        try{
+            stmt = conn.prepareStatement("select max(accno) from book");
+            ResultSet rset=stmt.executeQuery();
+            rset.next();
+            int i=rset.getInt(1);
+            closeConnection();
+            return i;
+        }
+        catch(Exception sql){
+            System.out.println("error2");
+        }
+     return 0;
+    }
+    public int modifyBook(String oldacc,
+            String newacc, String title, String author, String publication,
+            String edition, String volume, String year, String pages, String subject, String ddc, String sears){
         try {
             createConnection();
-            stmt = conn.prepareStatement("update book set ID=?,title=?,author=?,publication=?,edition=?,volume=?,"
-                    + "year=?,pages=?,subject=?,ddc=?,acc=? where ID=?");
-            stmt.setString(1, newID);
+            stmt = conn.prepareStatement("update book set accno=?,title=?,author=?,publication=?,edition=?,volume=?,"
+                    + "yyyy=?,pages=?,subject=?,ddc=?,sears=? where accno=?");
+            stmt.setString(1, newacc);
             stmt.setString(2, title);
             stmt.setString(3, author);
             stmt.setString(4, publication);
@@ -207,8 +223,8 @@ public class basicLibrary extends DBPackage.DBConnection {
             stmt.setString(8, pages);
             stmt.setString(9, subject);
             stmt.setString(10, ddc);
-            stmt.setString(11, acc);
-            stmt.setString(12, oldID);//completed the query
+            stmt.setString(11, sears);
+            stmt.setString(12, oldacc);//completed the query
             stmt.executeUpdate();//exucuting the query
             closeConnection();
         } catch (Exception sqle) {

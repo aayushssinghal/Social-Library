@@ -1,9 +1,9 @@
-package UI_pages;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
+package UI_pages;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,10 +15,10 @@ import DBPackage.basicLibrary;
 
 /**
  *
- * @author aayush
+ * @author dhiraj
  */
-public class addnewbook extends HttpServlet {
-
+public class returnbook extends HttpServlet {
+   
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -30,39 +30,29 @@ public class addnewbook extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        basicLibrary insert=new basicLibrary();
-        if(request.getParameter("accno")!="")insert.acc=Integer.parseInt(request.getParameter("accno"));
-        insert.title=request.getParameter("title");
-        insert.author=request.getParameter("author");
-        insert.publication=request.getParameter("publication");
-        if(request.getParameter("edition")!="")insert.edition=Integer.parseInt(request.getParameter("edition"));
-        if(request.getParameter("volume")!="")insert.volume=Integer.parseInt(request.getParameter("volume"));
-        if(request.getParameter("year")!="")insert.year=Integer.parseInt(request.getParameter("year"));
-        if(request.getParameter("pages")!="")insert.pages=Integer.parseInt(request.getParameter("pages"));
-        insert.subject=request.getParameter("subject");
-        insert.ddc=request.getParameter("ddc");
-        insert.sears=request.getParameter("sears");
-        
+        basicLibrary returning=new basicLibrary();
         try {
             /* TODO output your page here */
             //out.println("<html>");
             //out.println("<head>");
-            //out.println("<title>addnewbook Servlet addnewbook</title>");
+            //out.println("<title>deletebook Servlet deletebook</title>");
             //out.println("</head>");
             //out.println("<body>");
+            //out.println(insert.acc);
             try{
-                System.out.println("inserting new book");
-                int i=insert.insertNewBook();//out.println("here");
-                if (i==0){out.println("Could not insert the book");}
-                else out.println("Servlet addnewbook at " + request.getContextPath ());
+                System.out.println("retutning book");///////////////////should check for spaces or empty
+                int i=returning.returnBook(request.getParameter("accno"));//out.println("here");
+                if (i==0){out.println("Could not return the book");}
+                else if(i==2){out.println("The book is not issued");}
+                else out.println("Servlet returnbook at " + request.getContextPath ());
             }
             catch(Exception sql){
-                out.println("error1 "+sql);
+                out.println("error at delete "+sql);
             }
             //out.println("</body>");
             //out.println("</html>");
              /**/
-        } finally {            
+        } finally {
             out.close();
         }
     }
@@ -77,9 +67,9 @@ public class addnewbook extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
-    }
+    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -90,7 +80,7 @@ public class addnewbook extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -102,4 +92,5 @@ public class addnewbook extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
